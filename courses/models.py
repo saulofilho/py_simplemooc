@@ -1,12 +1,14 @@
 from django.db import models
 from django.urls import reverse
 
+
 class CourseManager(models.Manager):
   def search(self, query):
     return self.get_queryset().filter(
         models.Q(name__icontains=query) | models.Q(
             description__icontains=query)
     )
+
 
 class Course(models.Model):
   name = models.CharField('Nome', max_length=100)
@@ -26,7 +28,7 @@ class Course(models.Model):
 
   def __str__(self):
       return self.name
-      
+
   def get_absolute_url(self):
     return reverse('courses:details', args=(self.slug, ))
 
