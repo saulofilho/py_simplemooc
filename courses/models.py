@@ -78,8 +78,8 @@ class Material(models.Model):
     name = models.CharField('Nome', max_length=100)
     embedded = models.TextField('Vídeo embedded', blank=True)
     file = models.FileField(
-        upload_to='lessons/materials', 
-        blank=True, 
+        upload_to='lessons/materials',
+        blank=True,
         null=True
     )
     lesson = models.ForeignKey(
@@ -119,9 +119,9 @@ class Enrollment(models.Model):
         on_delete=models.CASCADE,
     )
     status = models.IntegerField(
-        'Situação', 
-        choices=STATUS_CHOICES, 
-        default=1, 
+        'Situação',
+        choices=STATUS_CHOICES,
+        default=1,
         blank=True
     )
     created_at = models.DateTimeField('Criado em', auto_now_add=True)
@@ -133,7 +133,7 @@ class Enrollment(models.Model):
 
     def is_approved(self):
         return self.status == 1
-    
+
     def __str__(self):
         return self.course
 
